@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('movimientos_stock', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('producto_id')
+                  ->constrained('productos')
+                  ->cascadeOnDelete();
+            $table->enum('tipo', ['ingreso', 'egreso']);
+            $table->integer('cantidad');
+            $table->decimal('costo_unitario', 12, 2);
+            $table->string('referencia')->nullable();
+            $table->date('fecha');
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->cascadeOnDelete();
             $table->timestamps();
         });
     }
