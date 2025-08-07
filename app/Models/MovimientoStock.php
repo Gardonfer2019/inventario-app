@@ -21,6 +21,9 @@ class MovimientoStock extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'fecha' => 'date',  // convierte automáticamente a Carbon
+    ];
 
     public function producto()
     {
